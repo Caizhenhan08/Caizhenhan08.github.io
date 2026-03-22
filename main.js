@@ -424,10 +424,10 @@
     });
 
     bindOssDownload({
-      ossBase: 'https://countdown-app-updater.oss-cn-hangzhou.aliyuncs.com/release',
-      latestYml: 'https://countdown-app-updater.oss-cn-hangzhou.aliyuncs.com/release/latest.yml',
+      ossBase: 'https://countdown-app-updater.oss-cn-hangzhou.aliyuncs.com',
+      latestYml: 'https://countdown-app-updater.oss-cn-hangzhou.aliyuncs.com/latest.yml',
       fallbackVersion: '1.1.21',
-      fallbackPath: 'countdown-whyapp Setup 1.1.21.exe',
+      fallbackPath: 'release/countdown-whyapp Setup 1.1.21.exe',
       linkId: 'countdownDownload',
       hintId: 'countdownVersionHint'
     });
