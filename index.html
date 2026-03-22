@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WhyGroup官网</title>
+  <meta name="description" content="WhyGroup 是一个团体." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@300;400;500;600;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <!--[if IE]><meta http-equiv="refresh" content="0; url=ie.html"><![endif]-->
+  <!--[if !IE]><!-->
+  <script>
+    (function() {
+      var ua = navigator.userAgent;
+      if (
+        /MSIE\s\d+\.\d+/.test(ua) ||
+        /Trident\/\d+\.\d+/.test(ua) && /rv:\d+\.\d+/.test(ua)
+      ) {
+        window.location.replace('ie.html');
+      }
+    })();
+  </script>
+  <!--<![endif]-->
+</head>
+<body>
+
+<!-- Animated Background Canvas -->
+<div class="bg-canvas" aria-hidden="true">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+</div>
+
+<!-- Main Wrapper -->
+<div class="wrapper">
+
+  <!-- ====== NAVIGATION ====== -->
+  <nav class="nav" id="nav" role="navigation" aria-label="主导航">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="#hero" class="nav-logo" aria-label="WhyGroup 首页">浙江台州Why集团</a>
+
+        <ul class="nav-links" role="list">
+          <li><a href="#hero" class="nav-link active" data-section="hero">首页</a></li>
+          <li><a href="#about" class="nav-link" data-section="about">关于</a></li>
+          <li><a href="#members" class="nav-link" data-section="members">成员</a></li>
+          <li><a href="#projects" class="nav-link" data-section="projects">项目</a></li>
+          <li><a href="#contact" class="nav-link" data-section="contact">联系</a></li>
+        </ul>
+
+        <button class="nav-toggle" id="navToggle" aria-label="打开菜单" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="移动端菜单">
+    <a href="#hero" data-section="hero">首页</a>
+    <a href="#about" data-section="about">关于</a>
+    <a href="#members" data-section="members">成员</a>
+    <a href="#projects" data-section="projects">项目</a>
+    <a href="#contact" data-section="contact">联系</a>
+  </div>
+
+  <!-- ====== HERO ====== -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero-inner">
+
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="hero-badge-dot"></span>
+            WhyGroup · 2023-2026 · 来自浙江诸暨荣怀外语中学
+          </div>
+
+          <h1 class="hero-title">
+            <span class="hero-title-line hero-title-gradient">你好，未来</span>
+            <span class="hero-title-line hero-title-gradient">@Future</span>
+          </h1>
+
+          <p class="hero-subtitle">
+            感谢您加入Why Group.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#about" class="btn btn-primary">
+              <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"/><polygon points="10,8 16,12 10,16"/></svg>
+              了解我们
+            </a>
+            <a href="#projects" class="btn btn-glass">
+              软件项目
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="hero-float-card glass">
+            <svg viewBox="0 0 24 24" width="14" height="14" stroke="#a78bfa" stroke-width="2" fill="none" style="display:inline;vertical-align:middle;margin-right:6px"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+            共创精神
+          </div>
+          <div class="hero-float-card glass">
+            <svg viewBox="0 0 24 24" width="14" height="14" stroke="#f0abfc" stroke-width="2" fill="none" style="display:inline;vertical-align:middle;margin-right:6px"><circle cx="12" cy="12" r="10"/><path d="M8 12l2.5 2.5L16 9"/></svg>
+            打破边界
+          </div>
+          <div class="hero-float-card glass">
+            <svg viewBox="0 0 24 24" width="14" height="14" stroke="#4facfe" stroke-width="2" fill="none" style="display:inline;vertical-align:middle;margin-right:6px"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            创造非凡
+          </div>
+          <div class="hero-orb">
+            <span class="hero-orb-inner">Why</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== ABOUT ====== -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-label">About Us</span>
+        <h2 class="section-title">我们是谁？</h2>
+        <p class="section-desc">Why Group的组成</p>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-card glass reveal reveal-delay-1">
+          <div class="about-icon">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3>共创精神</h3>
+          <p>每个人的想法都是拼图的一块，汇聚在一起才能看到全貌。</p>
+        </div>
+
+        <div class="about-card glass reveal reveal-delay-2">
+          <div class="about-icon">
+            <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <h3>创造非凡</h3>
+          <p>创造不一样的优秀产品！</p>
+        </div>
+
+
+        <div class="about-card glass reveal reveal-delay-1">
+          <div class="about-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          </div>
+          <h3>持续创造</h3>
+          <p>用作品说话，让创意不断延续，在实践中成长。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== MEMBERS ====== -->
+  <section class="members" id="members">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-label">Our People</span>
+        <h2 class="section-title">我们的成员</h2>
+        <p class="section-desc">Why Group的成员</p>
+      </div>
+
+      <!-- 成员说明 -->
+      <div class="members-notice reveal reveal-delay-1">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <p>
+          WhyGroup 成员覆盖学生、任课老师与班主任。<br />
+          若有疑问请联系微信：<strong>Caizhenhan2008</strong> 或 <strong>2978298500@qq.com</strong>
+        </p>
+      </div>
+
+      <!-- 2023–2024 · 104班（整合卡片） -->
+      <div class="class-group" id="class-104">
+        <article class="class-panel glass reveal reveal-delay-1" id="anchor-104">
+          <header class="class-panel__header">
+            <div class="class-panel__period">
+              <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              <span>2023年9月–2024年7月 · 104班</span>
+            </div>
+          </header>
+          <div class="class-panel__body">
+            <section class="class-panel__section" aria-labelledby="m104-students">
+              <div class="class-panel__section-head">
+                <svg class="class-panel__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                <h3 id="m104-students" class="class-panel__section-title">学生名单</h3>
+              </div>
+              <p class="class-panel__names">陈嘉诚 · 杨智纬 · 吴承祥 · 李孝晨 · 张静 · 李若熙 · 张航 · 郑诺诺 · 王浩阳 · 张栩睿 · 方思彤 · 蔡镇汉 · 陈伸昂 · 李思瑶 · 田家奥 · 王紫涵 · 周中泰 · 叶佳 · 韩正 · 黄承旭 · 余鑫杰 · 李欣泽</p>
+            </section>
+            <div class="class-panel__divider" role="presentation"></div>
+            <section class="class-panel__section" aria-labelledby="m104-teachers">
+              <div class="class-panel__section-head">
+                <svg class="class-panel__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.657 3.134 3 7 3s7-1.343 7-3v-5"/></svg>
+                <h3 id="m104-teachers" class="class-panel__section-title">教师</h3>
+              </div>
+              <dl class="class-panel__dl">
+                <dt>班主任</dt>
+                <dd>边丽娜</dd>
+                <dt>副班主任 / 任课老师</dt>
+                <dd>周丽君（英语）</dd>
+                <dt>任课老师</dt>
+                <dd>史川秀子（信息技术） · 季钰堃（通用技术） · 张意佳 · 王雨薇（政治） · 李雨杰 · 刘伟宁（地理） · 郭珍珍（生物） · 王姝（历史） · 詹超杰（化学） · 徐腾杰（体育） · 孙艺珂（物理） · 周旖（语文） · 申秀霞（数学）</dd>
+              </dl>
+            </section>
+          </div>
+        </article>
+      </div>
+
+      <!-- 2024–2025 · 204班（整合卡片 + 203 附注） -->
+      <div class="class-group">
+        <article class="class-panel glass reveal reveal-delay-1" id="anchor-204">
+          <header class="class-panel__header">
+            <div class="class-panel__period">
+              <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              <span>2024年9月–2025年7月 · 204班</span>
+            </div>
+          </header>
+          <div class="class-panel__body">
+            <section class="class-panel__section" aria-labelledby="m204-students">
+              <div class="class-panel__section-head">
+                <svg class="class-panel__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                <h3 id="m204-students" class="class-panel__section-title">学生名单</h3>
+              </div>
+              <p class="class-panel__names">张栩睿 · 张喆 · 陈嘉诚 · 蔡镇汉 · 许熊韵 · 陈伸昂 · 余鑫杰 · 杨怡萱 · 田家奥 · 郑诺诺 · 叶佳 · 张静 · 张航 · 黄承旭 · 陈柏辉 · 粟培林 · 李思瑶 · 王浩阳 · 赖哲承 · 张正宁 · 王梓铭 · 胡海潮 · 张睿芷</p>
+            </section>
+            <div class="class-panel__divider" role="presentation"></div>
+            <section class="class-panel__section" aria-labelledby="m204-teachers">
+              <div class="class-panel__section-head">
+                <svg class="class-panel__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.657 3.134 3 7 3s7-1.343 7-3v-5"/></svg>
+                <h3 id="m204-teachers" class="class-panel__section-title">教师</h3>
+              </div>
+              <dl class="class-panel__dl">
+                <dt>班主任 / 任课老师</dt>
+                <dd>边丽娜（信息技术）</dd>
+                <dt>副班主任 / 任课老师</dt>
+                <dd>詹珍怡（生物）</dd>
+                <dt>任课老师</dt>
+                <dd>王雨薇 · 徐锦（政治） · 唐诗楠 · 郑伽珲（通用技术） · 徐夏（语文） · 周纯如（数学） · 周丽君（英语） · 程意林（地理） · 于冰（历史） · 许汀杰（物理） · 徐腾杰（体育） · 叶立颖（西班牙语）</dd>
+              </dl>
+            </section>
+          </div>
+        </article>
+      </div>
+
+      <!-- 2025–2026 · 302班（整合卡片） -->
+      <div class="class-group">
+        <article class="class-panel glass reveal reveal-delay-1" id="anchor-302">
+          <header class="class-panel__header">
+            <div class="class-panel__period">
+              <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              <span>2025年9月–2026年6月 · 302班</span>
+            </div>
+          </header>
+          <div class="class-panel__body">
+            <section class="class-panel__section" aria-labelledby="m302-students">
+              <div class="class-panel__section-head">
+                <svg class="class-panel__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                <h3 id="m302-students" class="class-panel__section-title">学生名单</h3>
+              </div>
+              <p class="class-panel__names">蔡镇汉 · 陈嘉诚 · 陈嘉源 · 陈伸昂 · 陈奕帆 · 高文轩 · 韩叶俊 · 郎文博 · 李来 · 连浩宇 · 田家奥 · 王施龙 · 王煜童 · 巫燕宁 · 徐嘉伟 · 俞轩琦 · 张国涛 · 张栩睿 · 张宇琦 · 张喆 · 左云昊 · 杨怡萱 · 余鑫杰 · 楼郡霓</p>
+            </section>
+            <div class="class-panel__divider" role="presentation"></div>
+            <section class="class-panel__section" aria-labelledby="m302-teachers">
+              <div class="class-panel__section-head">
+                <svg class="class-panel__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.657 3.134 3 7 3s7-1.343 7-3v-5"/></svg>
+                <h3 id="m302-teachers" class="class-panel__section-title">教师</h3>
+              </div>
+              <dl class="class-panel__dl">
+                <dt>班主任 / 任课老师</dt>
+                <dd>边丽娜（信息技术）</dd>
+                <dt>副班主任 / 任课老师</dt>
+                <dd>金丽莎（英语）</dd>
+                <dt>任课老师</dt>
+                <dd>徐夏（语文） · 袁晶琳（数学） · 徐锦（政治） · 汪家芳（地理） · 唐景雄（历史） · 营逍（物理） · 郑伽珲（通用技术） · 徐腾杰（体育） · 严秀琪（日语） · 叶立颖（西班牙语）</dd>
+              </dl>
+            </section>
+          </div>
+        </article>
+      </div>
+
+      <!-- 名单待更新 · 203 / 303 / 304 -->
+      <div class="class-group">
+        <article class="class-panel class-panel--pending glass reveal reveal-delay-1" id="anchor-pending">
+          <header class="class-panel__header class-panel__header--pending">
+            <div class="class-panel__period class-panel__period--pending">
+              <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              <span>名单待更新</span>
+            </div>
+          </header>
+          <div class="class-panel__body class-panel__body--pending">
+            <h3 class="class-panel__pending-title">203班 · 303班 · 304班</h3>
+            <p class="class-panel__pending-status">成员名单暂未获取</p>
+            <p class="class-panel__pending-desc">我们对 203班、303班、304班 全体成员及任课老师<span class="class-panel__pending-desc-phrase">表示衷心感谢。</span></p>
+          </div>
+        </article>
+      </div>
+
+
+
+    </div>
+  </section>
+
+  <!-- ====== PROJECTS ====== -->
+  <section class="projects" id="projects">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-label">Our Projects</span>
+        <h2 class="section-title">软件项目</h2>
+        <p class="section-desc">每个项目都是一次全新的实验，跨越工具、数字与品牌的边界。</p>
+      </div>
+
+      <div class="projects-filter reveal reveal-delay-1">
+        <button class="filter-pill active" data-filter="all">全部</button>
+        <button class="filter-pill" data-filter="download">下载</button>
+        <button class="filter-pill" data-filter="tool">工具</button>
+        <button class="filter-pill" data-filter="web">网站</button>
+      </div>
+
+      <div class="projects-grid" id="projectsGrid">
+        <!-- WhyBrowser -->
+        <div class="project-card glass reveal reveal-delay-1" data-category="download tool" data-project="0">
+          <img class="project-thumb" src="Resources/App/WhyBrowser.png" alt="WhyBrowser 浏览器" loading="lazy" />
+          <div class="project-tags">
+            <span class="project-tag">下载</span>
+            <span class="project-tag">工具</span>
+          </div>
+          <h3 class="project-title">WhyBrowser · Why浏览器</h3>
+          <p class="project-desc">WhyGroup成员自己开发的浏览器，基于Electron架构，拥有多项特色功能！</p>
+          <div class="project-card-footer">
+            <span class="project-year">最近更新:2026年</span>
+            <div class="project-arrow">
+              <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Countdown WhyAPP -->
+        <div class="project-card glass reveal reveal-delay-2" data-category="download tool" data-project="1">
+          <img class="project-thumb" src="Resources/App/Countdown.png" alt="Countdown WhyAPP" loading="lazy" />
+          <div class="project-tags">
+            <span class="project-tag">下载</span>
+            <span class="project-tag">工具</span>
+          </div>
+          <h3 class="project-title">Countdown · Why倒计时工具</h3>
+          <p class="project-desc">WhyGroup成员自己开发的倒计时工具，支持大时钟以及桌面小组件，让重要时刻不再错过。</p>
+          <div class="project-card-footer">
+            <span class="project-year">最近更新:2026年</span>
+            <div class="project-arrow">
+              <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- 上课点名网站 -->
+        <div class="project-card glass reveal reveal-delay-3" data-category="web tool" data-project="3">
+          <img class="project-thumb" src="Resources/App/RollCall.png" alt="上课点名网站" loading="lazy" />
+          <div class="project-tags">
+            <span class="project-tag">网站</span>
+            <span class="project-tag">工具</span>
+          </div>
+          <h3 class="project-title">上课点名 · 在线点名工具</h3>
+          <p class="project-desc">简洁高效的课堂随机点名工具，支持名单导入、点名历史记录与数据分析，老师上课的好帮手。</p>
+          <div class="project-card-footer">
+            <span class="project-year">上次更新:2025年</span>
+            <div class="project-arrow">
+              <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- 下载条：占网格中与第三张项目卡同行的空白列（2 列布局下） -->
+        <div class="projects-downloads-inline reveal reveal-delay-3" data-category="download tool web">
+          <div class="download-btn-wrap glass reveal reveal-delay-2">
+            <div class="download-info">
+              <div class="download-icon">
+                <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              </div>
+              <div>
+                <div class="download-name">WhyBrowser 浏览器</div>
+                <div class="download-size" id="whybrowserVersionHint">支持Windows 10/11操作系统 · 正在获取版本…</div>
+              </div>
+            </div>
+            <a href="#" class="btn-download" id="whybrowserDownload" data-href="" rel="noopener noreferrer" target="_blank">
+              <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              下载 WhyBrowser
+            </a>
+          </div>
+
+          <div class="download-btn-wrap glass reveal reveal-delay-3">
+            <div class="download-info">
+              <div class="download-icon">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div>
+                <div class="download-name">Countdown — WhyAPP</div>
+                <div class="download-size" id="countdownVersionHint">支持Windows 10/11操作系统 · 倒计时工具</div>
+              </div>
+            </div>
+            <a href="#" class="btn-download" id="countdownDownload" data-href="" rel="noopener noreferrer" target="_blank">
+              <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              下载 倒计时APP
+            </a>
+          </div>
+
+          <div class="download-btn-wrap glass reveal reveal-delay-4">
+            <div class="download-info">
+              <div class="download-icon">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              </div>
+              <div>
+                <div class="download-name">在线点名工具 · 网页版</div>
+                <div class="download-size">名单导入、随机点名、历史记录 · 打开即用</div>
+              </div>
+            </div>
+            <a href="RollCallSystem/index.html" class="btn-visit" target="_blank">
+              <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              立即访问
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ====== SPECIAL THANKS ====== -->
+  <section class="thanks-section" id="thanks">
+    <div class="container">
+      <div class="thanks-card glass reveal">
+        <div class="thanks-icon">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <h3>鸣谢</h3>
+        <p class="section-desc" style="margin:0 auto; text-align:center;">
+          感谢所有支持 WhyGroup 走到今天的老师与同学。特别感谢 <strong style="color:var(--accent-2);">边丽娜老师</strong>（104/204/302班班主任信息技术任课老师）。
+        </p>
+
+        <!-- 班级跳转入口 — 点击跳转至成员区域 -->
+        <div style="margin-top:28px;">
+          <p style="font-size:0.75rem; font-weight:700; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:12px; text-align:center;">按班级查看成员</p>
+          <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:center;">
+            <a href="#anchor-104" class="thanks-pill" style="text-decoration:none; cursor:pointer;">
+              <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.657 3.134 3 7 3s7-1.343 7-3v-5"/></svg>
+              104班
+            </a>
+            <a href="#anchor-204" class="thanks-pill" style="text-decoration:none; cursor:pointer;">
+              <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.657 3.134 3 7 3s7-1.343 7-3v-5"/></svg>
+              204班
+            </a>
+            <a href="#anchor-302" class="thanks-pill" style="text-decoration:none; cursor:pointer;">
+              <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.657 3.134 3 7 3s7-1.343 7-3v-5"/></svg>
+              302班
+            </a>
+            <a href="#anchor-pending" class="thanks-pill" style="text-decoration:none; cursor:pointer;">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              名单待更新
+            </a>
+          </div>
+        </div>
+
+        <!-- 产品与服务认可 -->
+        <div class="thanks-recognition reveal reveal-delay-1">
+          <p class="thanks-recognition__label">产品与服务认可</p>
+          <ul class="thanks-recognition__list">
+            <li>感谢 104 集体对 Why日历、Why视频、Why课表 产品的高度认可。</li>
+            <li>感谢 204 集体、203 集体对「Why视频」APP 产品给予的高度认可。</li>
+            <li>感谢 204 集体对 Why日历、Why课表、Why浏览器、Why相机 产品的高度认可。</li>
+            <li>感谢 302 集体对 Why浏览器、Why倒计时APP 产品给予的高度认可。</li>
+            <li>感谢 305 集体对 Why倒计时APP 给予的高度认可。</li>
+            <li>感谢 302、303、304 集体及部分任课老师对 Why课表、Why日历 等相关服务的认可。</li>
+            <li>感谢詹珍怡老师对「Why点名」网站的高度认可。</li>
+            <li class="thanks-recognition__highlight">特别感谢试用 Why 系列 APP、网页的各集体与个人。</li>
+          </ul>
+        </div>
+
+        <!-- 特别顾问 -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== CONTACT ====== -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-label">Get In Touch</span>
+        <h2 class="section-title">联系到我们</h2>
+        <p class="section-desc">有问题或想法，欢迎随时联系。</p>
+      </div>
+
+      <div class="contact-layout">
+        <!-- Contact Info -->
+        <div class="contact-info reveal reveal-delay-1">
+          <div class="contact-info-card glass">
+            <h3>联系方式</h3>
+            <p>有问题或想法？欢迎随时联系。</p>
+            <div class="contact-links">
+              <a href="mailto:2978298500@qq.com" class="contact-link">
+                <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                2978298500@qq.com
+              </a>
+              <a href="weixin://dl/add?contact=Caizhenhan2008" class="contact-link">
+                <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                微信：Caizhenhan2008
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-feedback reveal reveal-delay-2">
+          <div class="contact-info-card glass">
+            <h3>留言反馈</h3>
+            <p>欢迎通过问卷星留言板提出建议、反馈使用体验，反馈和留言可选匿名免登录，帮助我们改进 Why 系列产品。</p>
+            <a
+              href="https://www.wenjuan.com/s/UZBZJvOS8mN/"
+              class="contact-feedback-btn"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="留言反馈，在新标签页打开问卷星"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              前往留言反馈
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== FOOTER ====== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-logo">Why</div>
+        <p class="footer-text">© 2023–2026 WhyGroup</p>
+        <div class="footer-socials">
+          <a href="weixin://dl/add?contact=Caizhenhan2008" class="footer-social" aria-label="微信">
+            <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-credits">
+        <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        AI Code 技术支持
+      </div>
+    </div>
+  </footer>
+
+</div><!-- /.wrapper -->
+
+<!-- ====== SCROLL TO TOP ====== -->
+<button class="scroll-top glass" id="scrollTop" aria-label="回到顶部">
+  <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<!-- ====== UA WARNING MODAL ====== -->
+<div class="ua-warning-overlay" id="uaWarningOverlay"></div>
+<div class="ua-warning-modal glass" id="uaWarningModal" role="dialog" aria-modal="true" aria-label="系统兼容性警告">
+  <div class="ua-warning-icon">
+    <img src="Resources/icon/error.png" width="72" height="72" alt="" aria-hidden="true" />
+  </div>
+  <p class="ua-warning-text" id="uaWarningText"></p>
+  <a href="#" class="ua-warning-force" id="uaWarningForceLink" rel="noopener noreferrer" target="_blank">仍然下载</a>
+  <button class="ua-warning-close" id="uaWarningClose">取消</button>
+</div>
+
+<!-- ====== PROJECT MODAL ====== -->
+<div class="modal-overlay" id="projectModal" role="dialog" aria-modal="true" aria-label="项目详情">
+  <div class="modal-box glass-strong" style="position:relative;">
+    <button class="modal-close" id="modalClose" aria-label="关闭弹窗">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <img class="modal-thumb" id="modalThumb" src="" alt="" />
+    <div class="project-tags" id="modalTags" style="margin-bottom:14px;"></div>
+    <h2 class="modal-title" id="modalTitle"></h2>
+    <p class="modal-desc" id="modalDesc"></p>
+    <div class="modal-detail" id="modalDetail">
+      <h4>项目详情</h4>
+      <p id="modalDetailText"></p>
+    </div>
+  </div>
+</div>
+
+<script src="main.js"></script>
+
+</body>
+</html>

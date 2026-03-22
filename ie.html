@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>WhyGroup · 浏览器升级提示</title>
+  <meta name="description" content="WhyGroup 官网提示您升级浏览器以获得最佳体验。" />
+  <style>
+    /* ── Background Glow Orbs ────────────────────────────────── */
+    .bg-orb {
+      position: fixed;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+      filter: blur(80px);
+      opacity: 0.35;
+      animation: orbFloat 8s ease-in-out infinite;
+    }
+
+    .bg-orb--1 {
+      width: 420px;
+      height: 420px;
+      background: radial-gradient(circle, #7c3aed, #4f46e5);
+      top: -120px;
+      left: -140px;
+      animation-delay: 0s;
+    }
+
+    .bg-orb--2 {
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle, #0ea5e9, #06b6d4);
+      bottom: -80px;
+      right: -100px;
+      animation-delay: -3s;
+    }
+
+    .bg-orb--3 {
+      width: 240px;
+      height: 240px;
+      background: radial-gradient(circle, #ec4899, #8b5cf6);
+      bottom: 30%;
+      left: 60%;
+      animation-delay: -5s;
+    }
+
+    @keyframes orbFloat {
+      0%   { transform: translate(0, 0) scale(1); }
+      25%  { transform: translate(30px, -40px) scale(1.08); }
+      50%  { transform: translate(-20px, 20px) scale(0.94); }
+      75%  { transform: translate(40px, 10px) scale(1.05); }
+      100% { transform: translate(0, 0) scale(1); }
+    }
+
+    /* ── Reset & Base ──────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, 'Microsoft YaHei', 'PingFang SC', sans-serif;
+      background: #0a0a1a;
+      color: #e0e0ff;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    /* ── Wrapper ────────────────────────────────────────────── */
+    .ie-wrap {
+      max-width: 580px;
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(167,139,250,0.25);
+      border-radius: 20px;
+      padding: 48px 44px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* subtle top gradient bar */
+    .ie-wrap::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #a78bfa, #4facfe);
+    }
+
+    /* ensure wrapper floats above orbs */
+    .ie-wrap { z-index: 1; }
+
+    /* ── Logo / Brand ───────────────────────────────────────── */
+    .ie-logo {
+      display: inline-block;
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #a78bfa, #4facfe);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 28px;
+    }
+
+    /* ── 警告图标（Resources/IEMode/error.png）──────────────── */
+    .ie-icon {
+      margin: 0 auto 28px;
+      padding: 0;
+      background: transparent;
+      border: none;
+      text-align: center;
+    }
+
+    .ie-icon img {
+      width: 72px;
+      height: 72px;
+      display: block;
+      margin: 0 auto;
+      border: 0;
+      vertical-align: top;
+      -ms-interpolation-mode: bicubic;
+    }
+
+    /* ── Headings ───────────────────────────────────────────── */
+    h1 {
+      font-size: 1.65rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 14px;
+      line-height: 1.3;
+      letter-spacing: -0.3px;
+    }
+
+    .ie-sub {
+      font-size: 0.92rem;
+      color: rgba(200,200,255,0.65);
+      line-height: 1.75;
+      margin-bottom: 36px;
+    }
+
+    /* ── Browser Cards ──────────────────────────────────────── */
+    .ie-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .ie-card {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 14px;
+      text-decoration: none;
+      color: #e0e0ff;
+      transition: background 0.2s, border-color 0.2s, transform 0.2s;
+      cursor: pointer;
+    }
+
+    .ie-card:hover {
+      background: rgba(167,139,250,0.12);
+      border-color: rgba(167,139,250,0.4);
+      transform: translateY(-2px);
+    }
+
+    .ie-card:active {
+      transform: scale(0.98);
+    }
+
+    .ie-card-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1.5rem;
+    }
+
+    /* 白色剪影 PNG 需放在较深底色上才清晰 */
+    .ie-card-icon--edge  { background: #0078d4; }
+    .ie-card-icon--chrome{ background: #db4437; }
+    /* 彩色 ICO 用浅色底，与两侧剪影区分 */
+    .ie-card-icon--why   { background: #ffffff; }
+
+    .ie-card-icon img {
+      width: 30px;
+      height: 30px;
+      display: block;
+      border: 0;
+      vertical-align: middle;
+      -ms-interpolation-mode: bicubic;
+    }
+
+    .ie-card-info { flex: 1; text-align: left; }
+
+    .ie-card-name {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 3px;
+    }
+
+    .ie-card-desc {
+      font-size: 0.78rem;
+      color: rgba(200,200,255,0.55);
+      line-height: 1.4;
+    }
+
+    .ie-card-arrow {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .ie-card-arrow svg {
+      width: 12px;
+      height: 12px;
+      stroke: rgba(200,200,255,0.5);
+      stroke-width: 2;
+      fill: none;
+    }
+
+    /* ── Divider ───────────────────────────────────────────── */
+    .ie-divider {
+      height: 1px;
+      background: rgba(255,255,255,0.07);
+      margin: 0 0 28px;
+    }
+
+    /* ── Footer note ───────────────────────────────────────── */
+    .ie-note {
+      font-size: 0.75rem;
+      color: rgba(200,200,255,0.35);
+      line-height: 1.6;
+    }
+
+    /* ── Continue link ─────────────────────────────────────── */
+    .ie-continue {
+      display: inline-block;
+      margin-top: 20px;
+      font-size: 0.8rem;
+      color: rgba(167,139,250,0.7);
+      text-decoration: underline;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .ie-continue:hover { color: #a78bfa; }
+
+    /* ── Responsive ─────────────────────────────────────────── */
+    @media (max-width: 480px) {
+      .ie-wrap { padding: 36px 24px; }
+      h1 { font-size: 1.35rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="bg-orb bg-orb--1"></div>
+<div class="bg-orb bg-orb--2"></div>
+<div class="bg-orb bg-orb--3"></div>
+
+<div class="ie-wrap">
+  <div class="ie-logo">WhyGroup</div>
+
+  <div class="ie-icon">
+    <img src="Resources/IEMode/error.png" width="72" height="72" alt="警告" />
+  </div>
+
+  <h1>检测到您正在使用 Internet Explorer</h1>
+  <p class="ie-sub">
+    为保证页面正常显示与数据安全，WhyGroup 官网不再支持 Internet Explorer 浏览器。<br />
+    请选择下方任一现代浏览器继续访问。
+  </p>
+
+  <div class="ie-cards">
+
+    <!-- Microsoft Edge -->
+    <a class="ie-card" href="https://www.microsoft.com/edge/download" target="_blank" rel="noopener">
+      <div class="ie-card-icon ie-card-icon--edge">
+        <img src="Resources/IEMode/edge.png" width="30" height="30" alt="Microsoft Edge" />
+      </div>
+      <div class="ie-card-info">
+        <div class="ie-card-name">Microsoft Edge</div>
+        <div class="ie-card-desc">Windows 10/11 预装 · 推荐 · Chromium 内核</div>
+      </div>
+      <div class="ie-card-arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </div>
+    </a>
+
+    <!-- Google Chrome -->
+    <a class="ie-card" href="https://google.cn/chrome/" target="_blank" rel="noopener">
+      <div class="ie-card-icon ie-card-icon--chrome">
+        <img src="Resources/IEMode/chrome.png" width="30" height="30" alt="Google Chrome" />
+      </div>
+      <div class="ie-card-info">
+        <div class="ie-card-name">Google Chrome</div>
+        <div class="ie-card-desc">全球最流行浏览器 · Windows / macOS / Android</div>
+      </div>
+      <div class="ie-card-arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </div>
+    </a>
+
+    <!-- WhyBrowser -->
+    <a class="ie-card" href="#" onclick="if(confirm('WhyBrowser 是一款基于 Chromium 的现代化浏览器，请先安装 Microsoft Edge 或 Chrome 后再下载。')){return true;}return false;">
+      <div class="ie-card-icon ie-card-icon--why">
+        <img src="Resources/IEMode/whybrowser.ico" width="30" height="30" alt="WhyBrowser" />
+      </div>
+      <div class="ie-card-info">
+        <div class="ie-card-name">WhyBrowser（WhyGroup 自研浏览器）</div>
+        <div class="ie-card-desc">基于 Electron </div>
+      </div>
+      <div class="ie-card-arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="ie-divider"></div>
+
+  <p class="ie-note">
+    若您使用的是企业内网系统，请联系管理员升级浏览器。<br/>
+    若您无法在此电脑上安装现代浏览器，可以使用移动设备或换至其他PC设备访问。
+    WhyGroup 官网 · &copy; 2023–2026 WhyGroup
+  </p>
+
+  <span class="ie-continue" onclick="
+    if(confirm('继续访问可能显示异常，是否确定继续？')) {
+      window.location.href = 'index.html';
+    }
+  ">仍然继续访问 WhyGroup 官网 &rarr;</span>
+</div>
+
+</body>
+</html>
