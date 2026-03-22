@@ -409,7 +409,7 @@
           apply({ version: fallbackVersion, path: fallbackPath });
           if (hint) {
             hint.textContent =
-              HINT_BASE + '最新版本（若版本号未刷新，请在 OSS 桶上配置 CORS 允许本站域名）';
+              HINT_BASE + '最新版本 null，请配置OSS CORS';
           }
         });
     }
