@@ -1,0 +1,771 @@
+/* ══════════════════════════════════════════════════════════════
+   指定日历页 — 外壳 + iOS 导出区样式
+   ══════════════════════════════════════════════════════════════ */
+
+:root {
+  --page-bg: #050510;
+  --glass-bg: rgba(255, 255, 255, 0.07);
+  --glass-border: rgba(255, 255, 255, 0.13);
+  --text-primary: #f0f0ff;
+  --text-secondary: rgba(240, 240, 255, 0.58);
+  --accent: #a78bfa;
+  --radius-pill: 999px;
+  --blur: 22px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; }
+
+body {
+  font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  background: var(--page-bg);
+  color: var(--text-primary);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ── Animated background ── */
+.bg-canvas {
+  position: fixed; inset: 0; z-index: 0;
+  pointer-events: none; overflow: hidden;
+}
+.blob { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.45; }
+.blob-1 { width: 500px; height: 500px; background: linear-gradient(135deg, #667eea, #764ba2); top: -180px; left: -180px; }
+.blob-2 { width: 420px; height: 420px; background: linear-gradient(135deg, #f093fb, #f5576c); bottom: -120px; right: -100px; }
+
+/* ── Page shell ── */
+.page-wrap {
+  position: relative; z-index: 1;
+  max-width: 520px; margin: 0 auto;
+  padding: clamp(16px, 4vw, 28px) clamp(16px, 4vw, 24px) 48px;
+}
+
+.content-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* 电脑端双行（双列）布局 */
+@media (min-width: 900px) {
+  .page-wrap {
+    max-width: 960px;
+  }
+  .content-layout {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 28px;
+  }
+  .control-card {
+    flex: 0 0 380px;
+    margin-bottom: 0;
+    position: sticky;
+    top: 20px;
+  }
+  #exportRoot {
+    flex: 1;
+    min-width: 0;
+    max-width: 420px;
+    margin: 0;
+  }
+}
+
+.top-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; margin-bottom: 20px;
+}
+
+.back-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 10px 16px;
+  background: var(--glass-bg); border: 1px solid var(--glass-border);
+  border-radius: var(--radius-pill); color: var(--text-secondary);
+  font-size: 13px; backdrop-filter: blur(var(--blur));
+  -webkit-backdrop-filter: blur(var(--blur));
+  transition: color 0.15s;
+}
+.back-link:hover { color: var(--text-primary); }
+
+.page-title { font-size: 15px; font-weight: 600; color: var(--text-secondary); letter-spacing: 0.02em; }
+
+/* ── Control card ── */
+.control-card {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px; padding: 18px 18px 20px;
+  margin-bottom: 20px;
+  backdrop-filter: blur(var(--blur)); -webkit-backdrop-filter: blur(var(--blur));
+}
+
+.hint {
+  font-size: 12px; color: var(--text-secondary); line-height: 1.5;
+  margin-bottom: 14px; opacity: 0.9;
+}
+
+.control-row {
+  display: flex; flex-wrap: wrap; align-items: flex-end;
+  gap: 14px; margin-bottom: 14px;
+}
+
+.field { display: flex; flex-direction: column; gap: 6px; flex: 1; min-width: 140px; }
+.field label { font-size: 12px; color: var(--text-secondary); }
+
+.field input[type="date"] {
+  font-family: inherit; font-size: 15px;
+  padding: 10px 12px; border-radius: 12px;
+  border: 1px solid var(--glass-border); background: rgba(0, 0, 0, 0.25);
+  color: var(--text-primary); color-scheme: dark;
+}
+.field input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(0.85); opacity: 0.8; }
+
+/* ── Options grid ── */
+.opts-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 12px;
+  margin-bottom: 14px;
+  padding: 12px 14px;
+  background: rgba(0, 0, 0, 0.18);
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.opt-row {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 8px; cursor: pointer; user-select: none;
+}
+.opt-label { font-size: 13px; color: rgba(240, 240, 255, 0.75); }
+
+/* iOS toggle switch */
+.toggle-input { display: none; }
+
+.toggle-track {
+  position: relative; display: inline-block;
+  width: 44px; height: 26px;
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 13px;
+  transition: background 0.25s;
+  flex-shrink: 0;
+}
+.toggle-track::after {
+  content: ''; position: absolute;
+  top: 3px; left: 3px;
+  width: 20px; height: 20px; border-radius: 50%;
+  background: #ffffff;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.35);
+}
+
+.toggle-input:checked + .toggle-track { background: #34c759; }
+.toggle-input:checked + .toggle-track::after { transform: translateX(18px); }
+
+/* ── Font selectors ── */
+.font-row {
+  display: flex; flex-wrap: wrap; gap: 10px;
+  margin-bottom: 14px;
+  padding: 12px 14px;
+  background: rgba(0, 0, 0, 0.18);
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.font-field { display: flex; flex-direction: column; gap: 5px; flex: 1; min-width: 130px; }
+.font-field label { font-size: 12px; color: var(--text-secondary); }
+
+.font-field select {
+  font-family: inherit; font-size: 13px;
+  padding: 8px 10px; border-radius: 10px;
+  border: 1px solid var(--glass-border); background: rgba(0, 0, 0, 0.25);
+  color: var(--text-primary); cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23f0f0ff' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 30px;
+}
+.font-field select:focus { outline: none; border-color: var(--accent); }
+.font-field select option { background: #1c1c2e; color: var(--text-primary); }
+
+/* ── Resolution selector ── */
+.opt-row:has(.resolution-select) { gap: 8px; }
+
+.resolution-select {
+  font-family: inherit; font-size: 12px;
+  padding: 5px 28px 5px 10px; border-radius: 8px;
+  border: 1px solid var(--glass-border); background: rgba(0, 0, 0, 0.25);
+  color: var(--text-primary); cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%23f0f0ff' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+}
+.resolution-select:focus { outline: none; border-color: var(--accent); }
+.resolution-select option { background: #1c1c2e; color: var(--text-primary); }
+
+/* ── Buttons ── */
+.actions { display: flex; flex-wrap: wrap; gap: 10px; }
+
+.btn {
+  font-family: inherit; font-size: 14px; font-weight: 600;
+  padding: 11px 20px; border-radius: 14px; border: none;
+  cursor: pointer; transition: transform 0.15s ease, opacity 0.15s ease;
+}
+.btn:active { transform: scale(0.98); }
+
+.btn-primary { background: linear-gradient(135deg, #667eea, #764ba2); color: #fff; }
+.btn-primary:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.1); color: var(--text-primary);
+  border: 1px solid var(--glass-border);
+}
+
+.status-msg { margin-top: 12px; font-size: 11px; color: var(--text-secondary); opacity: 0.75; }
+
+/* ══════════════════════════════════════════════════════════════
+   iOS 日历导出区 — 深色外壳控制 .ios-export.light / .dark
+   导出截图时 .ios-export 整体被截取
+   ══════════════════════════════════════════════════════════════ */
+
+#exportRoot {
+  width: 100%; max-width: 390px; margin: 0 auto;
+}
+
+/* ── Light mode (default) ── */
+.ios-export.light {
+  background: #ffffff;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
+  transition: background 0.45s ease;
+}
+.ios-export.light .ios-year-pill {
+  background: rgba(142, 142, 147, 0.12);
+  color: #000000;
+  transition: background 0.45s ease, color 0.45s ease;
+}
+.ios-export.light .ios-year-pill svg { opacity: 0.50; transition: opacity 0.45s ease; }
+.ios-export.light .ios-month-title { color: #000000; transition: color 0.45s ease; }
+.ios-export.light .ios-logo {
+  background: rgba(0, 0, 0, 0.07);
+  color: rgba(0, 0, 0, 0.50);
+  transition: background 0.45s ease, color 0.45s ease;
+}
+.ios-export.light .ios-divider { background: rgba(60, 60, 67, 0.18); transition: background 0.45s ease; }
+.ios-export.light .ios-section-divider { background: rgba(60, 60, 67, 0.18); transition: background 0.45s ease; }
+.ios-export.light .ios-month-banner span { color: #000000; transition: color 0.45s ease; }
+.ios-export.light .ios-month-divider { background: rgba(60, 60, 67, 0.18); transition: background 0.45s ease; }
+.ios-export.light .ios-weekday-pill {
+  background: rgba(142, 142, 147, 0.12);
+  color: #636366;
+  transition: background 0.45s ease, color 0.45s ease;
+}
+.ios-export.light .ios-cell .ios-g { color: #000000; transition: color 0.45s ease; }
+.ios-export.light .ios-cell .ios-l { color: #8e8e93; transition: color 0.45s ease; }
+.ios-export.light .ios-cell.faded .ios-g,
+.ios-export.light .ios-cell.faded .ios-l { color: #c7c7cc; transition: color 0.45s ease; }
+.ios-export.light .ios-rest { color: #a52929; transition: color 0.45s ease; }
+
+/* ── Dark mode ── */
+.ios-export.dark {
+  background: #1c1c1e;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+  transition: background 0.45s ease;
+}
+.ios-export.dark .ios-year-pill {
+  background: rgba(118, 118, 128, 0.28);
+  color: #ffffff;
+  transition: background 0.45s ease, color 0.45s ease;
+}
+.ios-export.dark .ios-year-pill svg { opacity: 0.6; transition: opacity 0.45s ease; }
+.ios-export.dark .ios-month-title { color: #ffffff; transition: color 0.45s ease; }
+.ios-export.dark .ios-logo {
+  background: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.50);
+  transition: background 0.45s ease, color 0.45s ease;
+}
+.ios-export.dark .ios-divider { background: rgba(84, 84, 88, 0.4); transition: background 0.45s ease; }
+.ios-export.dark .ios-section-divider { background: rgba(84, 84, 88, 0.4); transition: background 0.45s ease; }
+.ios-export.dark .ios-month-banner span { color: #ffffff; transition: color 0.45s ease; }
+.ios-export.dark .ios-month-divider { background: rgba(84, 84, 88, 0.4); transition: background 0.45s ease; }
+.ios-export.dark .ios-weekday-pill {
+  background: rgba(118, 118, 128, 0.30);
+  color: rgba(255, 255, 255, 0.50);
+  transition: background 0.45s ease, color 0.45s ease;
+}
+.ios-export.dark .ios-cell .ios-g { color: #ffffff; transition: color 0.45s ease; }
+.ios-export.dark .ios-cell .ios-l { color: rgba(255, 255, 255, 0.5); transition: color 0.45s ease; }
+.ios-export.dark .ios-cell.faded .ios-g,
+.ios-export.dark .ios-cell.faded .ios-l { color: rgba(255, 255, 255, 0.22); transition: color 0.45s ease; }
+.ios-export.dark .ios-rest { color: #ff6961; transition: color 0.45s ease; }
+
+/* ── Header layout ── */
+.ios-export {
+  padding: 20px 16px 22px;
+  border-radius: 16px; overflow: hidden;
+  --font-en: Arial, Helvetica, sans-serif;
+  --font-cn: 'Microsoft YaHei', 'DengXian', 'PingFang SC', sans-serif;
+  font-family: var(--font-en), var(--font-cn);
+}
+
+.ios-export.no-rounded {
+  border-radius: 0;
+}
+
+.ios-header {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  margin-bottom: 6px;
+  position: relative;
+}
+
+.ios-hdr-left { display: flex; flex-direction: column; gap: 4px; }
+
+.ios-year-pill {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 4px 10px 4px 7px; border-radius: 100px;
+  font-size: 13px; font-weight: 600; width: fit-content;
+}
+
+.ios-year-pill svg { flex-shrink: 0; }
+
+.ios-month-title {
+  font-size: 34px; font-weight: 700;
+  letter-spacing: -0.5px; line-height: 1.15;
+}
+
+.ios-logo {
+  position: absolute; top: 0; right: 0;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 11px; border-radius: 100px;
+}
+
+.ios-divider {
+  height: 1px; margin: 8px 0;
+}
+
+/* 月份分割线：显示在该月第一天所在周的行上方，与 banner 配合形成"月份区块" */
+.ios-month-divider {
+  height: 1px;
+  margin: 0;
+  background: rgba(60, 60, 67, 0.18);
+  pointer-events: none;
+}
+
+/* ── Weekday row ── */
+.ios-weekdays {
+  display: flex;
+  padding: 0;
+  margin-bottom: 6px;
+}
+
+.ios-weekday-pills {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.ios-weekday-pill {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 100%; height: 28px;
+  font-size: 12px; font-weight: 500; letter-spacing: 0.02em;
+  border-radius: 0;
+}
+
+/* ── Calendar grid ── */
+.ios-grid {
+  display: flex; flex-direction: column; gap: 0;
+}
+
+/* 月份横条：显示在该月 1 号正上方，与 7 列格子对齐 */
+.ios-month-banner {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  position: relative;
+  width: 100%;
+  height: 0;
+  margin: 0;
+  overflow: visible;
+  --month-col: 0;
+}
+.ios-month-banner span {
+  grid-column: calc(var(--month-col) + 1);
+  justify-self: center;
+  align-self: end;
+  position: relative;
+  top: -8px;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* 开启「月份分割线」时：月份标题单独占一行，仍与 1 号列对齐 */
+.ios-month-banner.banner-break-row {
+  position: static;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  align-items: center;
+  height: 28px;
+  margin: 0;
+  overflow: visible;
+}
+
+.ios-month-banner.banner-break-row span {
+  grid-column: calc(var(--month-col) + 1);
+  justify-self: center;
+  position: static;
+  top: auto;
+  line-height: 1;
+}
+
+.ios-week {
+  display: grid; grid-template-columns: repeat(7, 1fr);
+  min-height: 68px; align-items: stretch;
+}
+
+/* 格子 */
+.ios-cell {
+  position: relative; display: flex; align-items: center; justify-content: center;
+  padding: 3px 0;
+}
+
+.ios-cell-inner {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  width: 100%; min-height: 64px; padding: 6px 4px;
+  border-radius: 12px;
+  position: relative;
+}
+
+.ios-g {
+  font-size: 20px; font-weight: 600; line-height: 1.1;
+}
+
+.ios-l {
+  font-size: 10px; font-weight: 400; margin-top: 3px; line-height: 1.2;
+}
+
+/* 红色「休」角标（右上角） */
+.ios-rest {
+  position: absolute; top: 1px; right: 2px; z-index: 1;
+  font-size: 10px; font-weight: 600; line-height: 1; pointer-events: none;
+}
+
+/* ── 今日：用伪元素绘制固定直径圆，避免内容把背景撑成椭圆 ── */
+.ios-cell.today-circle .ios-cell-inner {
+  position: relative;
+  width: 100%;
+  min-height: 64px;
+  padding: 0;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 0;
+}
+
+.ios-cell.today-circle .ios-cell-inner::before {
+  content: '';
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #ff3b30;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+}
+
+/* 深色模式下今日也用同款红底 */
+.ios-export.dark .ios-cell.today-circle .ios-g,
+.ios-export.dark .ios-cell.today-circle .ios-l {
+  color: #ffffff;
+}
+.ios-export.dark .ios-cell.today-circle .ios-l { opacity: 0.92; }
+
+/* 浅色模式下今日也用同款红底 */
+.ios-export.light .ios-cell.today-circle .ios-g,
+.ios-export.light .ios-cell.today-circle .ios-l {
+  color: #ffffff;
+}
+.ios-export.light .ios-cell.today-circle .ios-l { opacity: 0.92; }
+
+/* 灰色占位格 */
+.ios-cell.faded .ios-cell-inner { background: transparent; }
+
+/* 隐藏计划外：保留网格占位，不显示日期（与「日一二三四五六」列对齐） */
+.ios-cell-hidden-oot .ios-cell-inner {
+  min-height: 64px;
+  pointer-events: none;
+}
+
+/* ── Responsive ── */
+@media (max-width: 400px) {
+  .ios-month-title { font-size: 30px; }
+  .ios-export { padding: 18px 12px 20px; }
+  .ios-logo { font-size: 11px; }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   Year Picker Modal - iOS Calendar Style
+   ══════════════════════════════════════════════════════════════ */
+.year-picker-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: ypFadeIn 0.2s ease;
+}
+
+@keyframes ypFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.year-picker-modal {
+  width: 100%;
+  max-width: 390px;
+  border-radius: 16px;
+  overflow: hidden;
+  animation: ypSlideUp 0.28s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+@keyframes ypSlideUp {
+  from { transform: translateY(40px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* iOS Light Year Picker */
+.year-picker-modal.yp-light {
+  background: #ffffff;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
+}
+
+.year-picker-modal.yp-light .yp-header {
+  background: #f2f2f7;
+  border-bottom: 1px solid rgba(60, 60, 67, 0.18);
+}
+
+.year-picker-modal.yp-light .yp-title {
+  color: #000000;
+}
+
+.year-picker-modal.yp-light .yp-nav-btn {
+  color: #007aff;
+}
+
+.year-picker-modal.yp-light .yp-nav-btn:active {
+  background: rgba(0, 122, 255, 0.1);
+}
+
+.year-picker-modal.yp-light .yp-cancel {
+  color: #007aff;
+}
+
+.year-picker-modal.yp-light .yp-done {
+  color: #007aff;
+  font-weight: 600;
+}
+
+.year-picker-modal.yp-light .yp-year-grid {
+  background: #ffffff;
+}
+
+.year-picker-modal.yp-light .yp-year-btn {
+  background: transparent;
+  color: #000000;
+}
+
+.year-picker-modal.yp-light .yp-year-btn:hover {
+  background: rgba(0, 122, 255, 0.08);
+}
+
+.year-picker-modal.yp-light .yp-year-btn:active {
+  background: rgba(0, 122, 255, 0.15);
+}
+
+.year-picker-modal.yp-light .yp-year-btn.yp-selected {
+  background: #007aff;
+  color: #ffffff;
+}
+
+.year-picker-modal.yp-light .yp-year-btn.yp-today {
+  color: #007aff;
+  font-weight: 600;
+}
+
+.year-picker-modal.yp-light .yp-year-btn.yp-today.yp-selected {
+  color: #ffffff;
+}
+
+/* iOS Dark Year Picker */
+.year-picker-modal.yp-dark {
+  background: #1c1c1e;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+}
+
+.year-picker-modal.yp-dark .yp-header {
+  background: #2c2c2e;
+  border-bottom: 1px solid rgba(84, 84, 88, 0.4);
+}
+
+.year-picker-modal.yp-dark .yp-title {
+  color: #ffffff;
+}
+
+.year-picker-modal.yp-dark .yp-nav-btn {
+  color: #0a84ff;
+}
+
+.year-picker-modal.yp-dark .yp-nav-btn:active {
+  background: rgba(10, 132, 255, 0.15);
+}
+
+.year-picker-modal.yp-dark .yp-cancel {
+  color: #0a84ff;
+}
+
+.year-picker-modal.yp-dark .yp-done {
+  color: #0a84ff;
+  font-weight: 600;
+}
+
+.year-picker-modal.yp-dark .yp-year-grid {
+  background: #1c1c1e;
+}
+
+.year-picker-modal.yp-dark .yp-year-btn {
+  background: transparent;
+  color: #ffffff;
+}
+
+.year-picker-modal.yp-dark .yp-year-btn:hover {
+  background: rgba(10, 132, 255, 0.12);
+}
+
+.year-picker-modal.yp-dark .yp-year-btn:active {
+  background: rgba(10, 132, 255, 0.2);
+}
+
+.year-picker-modal.yp-dark .yp-year-btn.yp-selected {
+  background: #0a84ff;
+  color: #ffffff;
+}
+
+.year-picker-modal.yp-dark .yp-year-btn.yp-today {
+  color: #0a84ff;
+  font-weight: 600;
+}
+
+.year-picker-modal.yp-dark .yp-year-btn.yp-today.yp-selected {
+  color: #ffffff;
+}
+
+/* Year Picker Header */
+.yp-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+}
+
+.yp-nav-section {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.yp-nav-btn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+  color: inherit;
+}
+
+.yp-nav-btn:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.yp-nav-btn svg {
+  flex-shrink: 0;
+}
+
+.yp-title {
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  min-width: 80px;
+  text-align: center;
+}
+
+.yp-cancel, .yp-done {
+  font-size: 17px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px 8px;
+  font-family: inherit;
+}
+
+.yp-cancel:active, .yp-done:active {
+  opacity: 0.6;
+}
+
+/* Year Grid */
+.yp-year-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  padding: 8px 12px 16px;
+}
+
+.yp-year-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 52px;
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: inherit;
+  position: relative;
+}
+
+/* Today indicator dot */
+.yp-year-btn.yp-today::after {
+  content: '';
+  position: absolute;
+  bottom: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.yp-year-btn.yp-today.yp-selected::after {
+  background: #ffffff;
+}

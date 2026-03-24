@@ -63,7 +63,8 @@ const elements = {
   yearPickerRange: document.getElementById('yearPickerRange'),
   yearPickerPrev: document.getElementById('yearPickerPrev'),
   yearPickerNext: document.getElementById('yearPickerNext'),
-  yearGrid: document.getElementById('yearGrid')
+  yearGrid: document.getElementById('yearGrid'),
+  fullscreenToggle: document.getElementById('fullscreenToggle')
 };
 
 // ============================================================
@@ -340,6 +341,33 @@ function changeYearPickerRange(delta) {
 }
 
 // ============================================================
+// FULLSCREEN FUNCTIONS
+// ============================================================
+function syncFullscreenUI() {
+  const isFullscreen = !!document.fullscreenElement;
+  document.body.classList.toggle('is-fullscreen', isFullscreen);
+  if (elements.fullscreenToggle) {
+    elements.fullscreenToggle.textContent = isFullscreen ? '退出全屏' : '进入全屏';
+    elements.fullscreenToggle.setAttribute('aria-label', isFullscreen ? '退出全屏' : '进入全屏');
+  }
+}
+
+async function toggleFullscreen() {
+  if (!elements.fullscreenToggle) return;
+  try {
+    if (!document.fullscreenElement) {
+      await document.documentElement.requestFullscreen();
+    } else {
+      await document.exitFullscreen();
+    }
+  } catch (_) {
+    // Keep silent to avoid interrupting calendar usage.
+  } finally {
+    syncFullscreenUI();
+  }
+}
+
+// ============================================================
 // EVENT LISTENERS
 // ============================================================
 
@@ -362,6 +390,12 @@ elements.yearPickerPrev.addEventListener('click', () => changeYearPickerRange(-1
 elements.yearPickerNext.addEventListener('click', () => changeYearPickerRange(1));
 elements.yearPicker.querySelector('.picker-overlay').addEventListener('click', closeYearPicker);
 
+// Fullscreen
+if (elements.fullscreenToggle) {
+  elements.fullscreenToggle.addEventListener('click', toggleFullscreen);
+}
+document.addEventListener('fullscreenchange', syncFullscreenUI);
+
 // ============================================================
 // INITIALIZATION
 // ============================================================
@@ -370,6 +404,7 @@ elements.yearPicker.querySelector('.picker-overlay').addEventListener('click', c
 renderCalendar();
 updateDateDisplay();
 updateTimeDisplay();
+syncFullscreenUI();
 
 // Update time every second
 setInterval(updateTimeDisplay, 1000);
