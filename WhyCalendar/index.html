@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>WhyCalendar - Why集团日历</title>
+  <meta name="description" content="WhyCalendar - Why集团的日历电子版" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* D-DIN-PRO Font Face */
+    @font-face {
+      font-family: 'D-DIN-PRO';
+      src: url('../Resources/Fonts/D-DIN-PRO-500-Medium.otf') format('opentype');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'D-DIN-PRO';
+      src: url('../Resources/Fonts/D-DIN-PRO-500-Medium.otf') format('opentype');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+  </style>
+</head>
+<body>
+  <!-- Animated Background -->
+  <div class="bg-canvas" aria-hidden="true">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <div class="blob blob-4"></div>
+  </div>
+
+  <!-- Main Container -->
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <a href="../index.html" class="back-link">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        返回首页
+      </a>
+      <div class="logo">WhyCalendar</div>
+      <div class="subtitle">Why集团日历</div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Left: Calendar -->
+      <section class="calendar-section">
+        <div class="calendar-card">
+          <!-- Month Navigation -->
+          <div class="calendar-nav">
+            <button class="nav-btn" id="prevMonth" aria-label="上个月">
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24' fill='none' stroke='%23a78bfa' stroke-width='2'%3E%3Cpath d='M15 18l-6-6 6-6'/%3E%3C/svg%3E" alt="上个月" />
+            </button>
+            <div class="picker-trigger" id="monthPickerTrigger">
+              <h2 class="current-month" id="currentMonth"></h2>
+            </div>
+            <button class="nav-btn" id="nextMonth" aria-label="下个月">
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24' fill='none' stroke='%23a78bfa' stroke-width='2'%3E%3Cpath d='M9 18l6-6-6-6'/%3E%3C/svg%3E" alt="下个月" />
+            </button>
+          </div>
+
+          <!-- Weekday Headers -->
+          <div class="weekdays">
+            <div class="weekday">日</div>
+            <div class="weekday">一</div>
+            <div class="weekday">二</div>
+            <div class="weekday">三</div>
+            <div class="weekday">四</div>
+            <div class="weekday">五</div>
+            <div class="weekday">六</div>
+          </div>
+
+          <!-- Days Grid -->
+          <div class="days-grid" id="daysGrid"></div>
+
+          <!-- Year Navigation -->
+          <div class="year-nav">
+            <button class="year-btn" id="prevYear">
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='16' height='16' fill='none' stroke='%23a78bfa' stroke-width='2'%3E%3Cpath d='M15 18l-6-6 6-6'/%3E%3C/svg%3E" alt="上一年" />
+            </button>
+            <div class="picker-trigger" id="yearPickerTrigger">
+              <span class="current-year" id="currentYear"></span>
+            </div>
+            <button class="year-btn" id="nextYear">
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='16' height='16' fill='none' stroke='%23a78bfa' stroke-width='2'%3E%3Cpath d='M9 18l6-6-6-6'/%3E%3C/svg%3E" alt="下一年" />
+            </button>
+            <div class="today-btn-wrapper">
+              <button class="today-btn" id="todayBtn" aria-label="返回今天">今天</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right: Date & Time -->
+      <section class="datetime-section">
+        <div class="datetime-card">
+          <!-- Current Date -->
+          <div class="date-display">
+            <div class="date-day" id="dateDay"></div>
+            <div class="date-weekday" id="dateWeekday"></div>
+            <div class="date-full" id="dateFull"></div>
+          </div>
+
+          <!-- Current Time -->
+          <div class="time-display">
+            <div class="time-hours" id="timeHours"></div>
+            <div class="time-separator">:</div>
+            <div class="time-minutes" id="timeMinutes"></div>
+            <div class="time-seconds-wrapper">
+              <div class="time-seconds" id="timeSeconds"></div>
+            </div>
+          </div>
+
+          <!-- Digital Time -->
+          <div class="digital-time" id="digitalTime"></div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>浙江台州Why集团 · WhyCalendar</p>
+    </footer>
+
+    <!-- Month Picker Modal -->
+    <div class="picker-modal" id="monthPicker">
+      <div class="picker-overlay"></div>
+      <div class="picker-content">
+        <div class="picker-header">
+          <button class="picker-nav-btn" id="monthPickerPrev">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <span class="picker-title" id="monthPickerYear"></span>
+          <button class="picker-nav-btn" id="monthPickerNext">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+        <div class="month-grid" id="monthGrid"></div>
+      </div>
+    </div>
+
+    <!-- Year Picker Modal -->
+    <div class="picker-modal" id="yearPicker">
+      <div class="picker-overlay"></div>
+      <div class="picker-content picker-content-wide">
+        <div class="picker-header">
+          <button class="picker-nav-btn" id="yearPickerPrev">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <span class="picker-title" id="yearPickerRange"></span>
+          <button class="picker-nav-btn" id="yearPickerNext">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+        <div class="year-grid" id="yearGrid"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>

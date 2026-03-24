@@ -140,7 +140,7 @@
   const projectCards = document.querySelectorAll('.project-card');
   const projectsGrid = document.getElementById('projectsGrid');
   const filterTargets = projectsGrid
-    ? projectsGrid.querySelectorAll('.project-card, .projects-downloads-inline')
+    ? projectsGrid.querySelectorAll('.project-card, .projects-actions-col')
     : projectCards;
 
   filterBtns.forEach(btn => {
@@ -201,9 +201,13 @@
 
   projectCards.forEach(card => {
     card.addEventListener('click', function(e) {
-      // 点名工具直接跳转到外部链接
+      // 网页版项目：点击直接打开
       if (card.dataset.project === '3') {
         window.open('RollCallSystem/index.html', '_blank');
+        return;
+      }
+      if (card.dataset.project === '4') {
+        window.open('WhyCalendar/index.html', '_blank');
         return;
       }
       openModal(parseInt(card.dataset.project));

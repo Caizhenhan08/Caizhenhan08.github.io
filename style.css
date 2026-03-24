@@ -1256,15 +1256,36 @@
       fill: none;
     }
 
-    /* 与第三张项目卡同一行右侧：纵向叠放两个下载条 */
-    .projects-downloads-inline {
+    /* 项目区底部：下载（左）与网页（右）分栏；筛选时单列可自动占满宽度（flex） */
+    .projects-actions-split {
+      grid-column: 1 / -1;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 24px;
+      align-items: flex-start;
+    }
+
+    .projects-actions-col {
+      flex: 1 1 280px;
       display: flex;
       flex-direction: column;
       gap: 16px;
       min-width: 0;
+      align-self: stretch;
     }
 
-    .projects-downloads-inline .download-btn-wrap {
+    .projects-actions-label {
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin: 0 0 4px;
+    }
+
+    .projects-actions-col .download-btn-wrap {
       margin-top: 0;
       width: 100%;
       flex-direction: column;
@@ -1273,15 +1294,14 @@
       gap: 14px;
     }
 
-    .projects-downloads-inline .download-btn-wrap .btn-download,
-    .projects-downloads-inline .download-btn-wrap .btn-visit {
+    .projects-actions-col .download-btn-wrap .btn-download,
+    .projects-actions-col .download-btn-wrap .btn-visit {
       justify-content: center;
     }
 
-    /* 桌面双列：下载列按内容高度对齐顶部，避免子块被拉高后 space-between 把按钮顶到底部 */
     @media (min-width: 769px) {
-      .projects-downloads-inline {
-        align-self: start;
+      .projects-actions-split {
+        align-items: flex-start;
       }
     }
 
@@ -2216,6 +2236,14 @@
       .about-grid { grid-template-columns: 1fr; }
       .members-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
       .projects-grid { grid-template-columns: 1fr; }
+
+      .projects-actions-split {
+        flex-direction: column;
+      }
+
+      .projects-actions-col {
+        flex: 1 1 auto;
+      }
 
       .contact-form-wrap { padding: 28px 24px; }
       .download-btn-wrap {
